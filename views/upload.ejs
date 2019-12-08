@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title><%= title; %></title>
+</head>
+<body>
+    <h3><%= title %></h3>
+
+      <form id="bowserUpoad">
+        <div class="form-group">
+          <label for="uploadfile">Example file input</label>
+          <input type="file" class="form-control-file" id="uploadfile">
+          <input id="submit" type="submit" value="upload"></button>
+        </div>
+      </form>
+
+</body>
+</html>
+
+<script>
+
+$('#bowserUpoad #submit').click(function(){
+    alert('upload via Aws client js sdk..')
+})
+
+
+</script>
