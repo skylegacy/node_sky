@@ -11,7 +11,7 @@ var dbRouter = require('./routes/db');
 
 var bodyParser = require('body-parser');
 var session = require('express-session');
-
+var userService = require('./lib/userService');
 
 var app = express();
 
@@ -38,18 +38,43 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(requestTime);
 
-var expiryDate = new Date( Date.now() + 10 * 60 * 1000 );
+ //  Hook
 
-app.set('trust proxy', 1) // trust first proxy
-app.use( session({
-   secret : 'skylegacy_user',
-   name : 'session',
-   cookie: {
-    maxAge: expiryDate  // 有效期，单位是毫秒
-    }
-  })
+var expiryDate = new Date( Date.now() + 10 * 60 * 1000 );  // 有效期，单位是毫秒
+
+app.set('trust proxy', 1)
+ 
+//  Can't put  Session Init  On callBack
+app.use(
+      session({
+        secret : 'skyline',
+        name : 'skysession', 
+        saveUninitialized: false,
+        resave: true, 
+        cookie: {
+              maxAge: expiryDate  
+            }
+      })
 );
 
+app.use(function (req, res, next) {
+  
+     console.log('鉤子1');
+    //   Application Level  MiddleWare
+        
+
+       next();
+});
+
+app.use(function (req, res,next) {
+
+      // todo:  Determine The User  if  Has 
+      userService.authenticate(req,res);
+
+        console.log('鉤子2');
+       //    Must  execute next()  , Route Level  will  excute
+       next();
+});
 
 // controller
 

@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@babel/core": "^7.7.5",
     "async": "^3.1.0",
     "bcrypt": "^3.0.7",
     "body-parser": "^1.19.0",
@@ -13,7 +14,8 @@
     "cookie-session": "*",
     "debug": "~2.6.9",
     "ejs": "^3.0.1",
-    "express": "~4.16.1",
+    "express": "^4.16.4",
+    "express-session": "^1.17.0",
     "http-errors": "~1.6.3",
     "morgan": "~1.9.1",
     "mysql": "^2.17.1",
@@ -28,7 +30,9 @@
   },
   "description": "quick app to aws test",
   "main": "app.js",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-watch": "^7.0.0"
+  },
   "keywords": [
     "sky_to_aws"
   ],

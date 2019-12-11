@@ -7,7 +7,7 @@ var userController = require('../lib/userController');
 
 var Role  = require('../sequelize').Role;
  
-
+//  get: http://127.0.0.1:3000/api/auth
 
 router.get('/auth',  function(req, res, next) {
     
@@ -28,10 +28,10 @@ router.get('/auth',  function(req, res, next) {
             }else{
                 console.log('沒有'); 
             }
-            // res.json(calldata);
+            res.json(req.session.loginUser);
         }
     );
-        res.json(req.session.loginUser);
+       
 });
 
 router.post('/role',function(req, res, next){
@@ -50,6 +50,8 @@ router.post('/role',function(req, res, next){
     });
 
 });
+
+//  post: http://127.0.0.1:3000/api/user
 
 router.post('/user',function(req, res, next){
 
