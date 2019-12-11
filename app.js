@@ -10,6 +10,7 @@ var usersRouter = require('./routes/users');
 var dbRouter = require('./routes/db');
 
 var bodyParser = require('body-parser');
+var session = require('express-session');
 
 
 var app = express();
@@ -35,9 +36,23 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(requestTime);
+
+var expiryDate = new Date( Date.now() + 10 * 60 * 1000 );
+
+app.set('trust proxy', 1) // trust first proxy
+app.use( session({
+   secret : 'skylegacy_user',
+   name : 'session',
+   cookie: {
+    maxAge: expiryDate  // 有效期，单位是毫秒
+    }
+  })
+);
+
 
 // controller
-app.use(requestTime);
+
 
 app.use('/api',apiRouter);
 app.use('/db', dbRouter);

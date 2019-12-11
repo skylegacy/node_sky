@@ -10,6 +10,13 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource,'+responseText);
 });
 
+router.get('/login', function(req, res, next) {
+   
+  var resword = userController.login(req);
+  res.send(resword);
+});
+
+
 router.get('/status',function(req, res, next){
     
     var str = userController.register();

@@ -9,11 +9,29 @@ var Role  = require('../sequelize').Role;
  
 
 
-router.get('/auth', function(req, res, next) {
+router.get('/auth',  function(req, res, next) {
     
     // express.basicAuth(userService.authenticate);
 
-    res.end('try auth...');
+    let calldata = null;
+    
+     userService.reCrypPassWd(
+         req.body.account,
+         req.body.password,
+        function(calldata){
+            console.log('------- 最終結果 --------');
+            var instances = JSON.parse(calldata);
+            if(instances.length>0){
+                req.session.loginUser = instances[0].username;
+                console.log('查詢->處理->查詢');
+                console.log(req.session.loginUser);
+            }else{
+                console.log('沒有'); 
+            }
+            // res.json(calldata);
+        }
+    );
+        res.json(req.session.loginUser);
 });
 
 router.post('/role',function(req, res, next){
@@ -24,12 +42,12 @@ router.post('/role',function(req, res, next){
 
     adddata.roleName = req.body.roleName;
  
-    // Role.create({"roleName":adddata.roleName})
-    // .then(function(role){
-    //     res.json(role.get({
-    //         plain: true
-    //       }))
-    // });
+    Role.create({"roleName":adddata.roleName})
+    .then(function(role){
+        res.json(role.get({
+            plain: true
+          }))
+    });
 
 });
 
