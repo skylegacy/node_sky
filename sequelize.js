@@ -5,7 +5,7 @@ const RoleModel = require('./models/role')
  
 
 
-const sequelize = new Sequelize('skybase', 'root', '123456789', {
+const sequelize = new Sequelize('sky_node', 'root', 'root', {
     host: 'localhost',
     dialect: 'mysql',
     pool: {

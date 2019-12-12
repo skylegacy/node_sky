@@ -10,6 +10,15 @@
 <body>
     <h3><%= title %></h3>
 
+    
+        <% if(loginUser!=null){ %>
+            <span>已登入:
+                <%= loginUser   %>
+            </span>
+      <%  }else{ %>
+        <span>未登入</span>
+        <% }%>
+     
       <form id="bowserLogin" method="post" action="/authuser">
         <div class="form-group">
 
