@@ -8,12 +8,14 @@ var userService = require('../lib/userService');
 router.get('/', function(req, res, next) {
   // req.session.username = "skyTest";
   res.render('index', { title: 'Express' });
+  next();
 });
 
 router.get('/upload',function(req, res, next){
   var output = uploader.showUpload();
   res.writeHead(200,{'Content-Type':'text/html'});
   res.end(output);
+  next();
 })
  
 router.post('/authuser',function(req, res, next){
@@ -44,6 +46,8 @@ router.post('/authuser',function(req, res, next){
             }
             
         );
+
+        next();
        
 })
 

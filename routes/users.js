@@ -3,11 +3,14 @@ var router = express.Router();
 var userController = require('../lib/userController');
 
 
+
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   
   var responseText = 'Requested at: ' + req.requestTime + '';
   res.send('respond with a resource,'+responseText);
+
+  next()
 });
 
 router.get('/login',  userController.login);
@@ -27,6 +30,8 @@ router.get('/status',function(req, res, next){
     res.write('</html>');
 
     res.end();
+
+    next();
      
 });
 
