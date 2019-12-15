@@ -19,9 +19,10 @@
         <span>未登入</span>
         <% }%>
      
-      <form id="bowserLogin" method="post" action="/authuser">
+      <form  id="bowserLogin" method="post" action="/authuser">
         <div class="form-group">
 
+            <input type="hidden" name="passurl" value="<%=repassUrl %>">
            <p>
             <input type="text" name="account" />
            </p>

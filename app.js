@@ -11,6 +11,7 @@ var dbRouter = require('./routes/db');
 
 var bodyParser = require('body-parser');
 var session = require('express-session');
+ 
 var userService = require('./lib/userService');
 
 var app = express();
@@ -37,7 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
  //  Hook
 
-var expiryDate = new Date( Date.now() + 10 * 60 * 1000 );  // 有效期，单位是毫秒
+var expiryDate = new Date( Date.now() + 20 * 60 * 1000 );  // 有效期，单位是毫秒
 
 app.set('trust proxy', 1)
  
@@ -46,8 +47,8 @@ app.use(
       session({
         secret : 'skyline',
         name : 'skysession', 
-        saveUninitialized: false,
-        resave: true, 
+        resave: true,
+        saveUninitialized:true,
         cookie: {
               maxAge: expiryDate  
             }
@@ -56,16 +57,13 @@ app.use(
 
 app.use(function (req, res, next) {
   
-     console.log('--- 鉤子1 ---');
+    console.log('--- 鉤子1 ---');
     //   Application Level  MiddleWare
- 
-
     app.set('urlCurrent', req.protocol + '://' + req.get('host') + req.originalUrl);
-   
     var urlReferer = app.get('urlReferer');
-
     console.log('前一頁:'+urlReferer);
-       next();
+    
+    next();
 });
 
 
@@ -106,6 +104,14 @@ app.use(function(req,res){
     var urlCurrent = app.get('urlCurrent');
       console.log('現在頁:'+urlCurrent);
       app.set('urlReferer',urlCurrent);
+      console.log('-------->最後的session:'+req.session.loginUser);
+
+      // if(typeof req.session.loginUser !== "undefined"){
+      //   console.log('-------->最後的session:'+req.session.loginUser);
+      // }else{
+      //   console.log('-------->已清除session:------->');
+      // }
+
   
 });
 
