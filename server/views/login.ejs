@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <title><%= title; %></title>
+</head>
+<body>
+    <h3><%= title %></h3>
+
+    
+        <% if(loginUser!=null){ %>
+            <span>已登入:
+                <%= loginUser   %>
+            </span>
+      <%  }else{ %>
+        <span>未登入</span>
+        <% }%>
+     
+      <form  id="bowserLogin" method="post" action="/authuser">
+        <div class="form-group">
+
+            <input type="hidden" name="passurl" value="<%=repassUrl %>">
+           <p>
+            <input type="text" name="account" />
+           </p>
+           <p>
+            <input type="text" name="password" />
+           </p>
+
+            <input id="submit" type="submit" value="login"></button>
+        </div>
+      </form>
+
+</body>
+</html>
+
+<script>
+
+$('#bowserLogin #submit').click(function(){
+    alert('login...')
+})
+
+
+</script>
