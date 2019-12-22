@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <title><%= title; %></title>
-</head>
+        <head>
+                <%- include('partials/head')  %>
+                <style type="text/css">
+                    body {
+                      background-color: #eee;
+                      -webkit-font-smoothing: antialiased;
+                      -moz-font-smoothing: grayscale;
+                    }
+                    .ui.container {
+                      margin-top: 6rem;
+                      max-width: 22rem !important;
+                    }
+                    .ui.large.form > .field:first-child {
+                      margin-bottom: 0;
+                    }
+                  </style>
+        </head>
+
 <body>
-    <h3><%= title %></h3>
+   
+    <div class="ui center aligned grid">
+            <div class="ui container">
+    <h3 class="ui huge header"><%= title %></h3>
 
     
         <% if(loginUser!=null){ %>
@@ -19,21 +33,36 @@
         <span>未登入</span>
         <% }%>
      
-      <form  id="bowserLogin" method="post" action="/authuser">
-        <div class="form-group">
-
+      <form class="ui large form"  id="bowserLogin" method="post" action="/authuser">
+         
             <input type="hidden" name="passurl" value="<%=repassUrl %>">
-           <p>
-            <input type="text" name="account" />
-           </p>
-           <p>
-            <input type="text" name="password" />
-           </p>
+        
+        <div class="field"> 
+                <label>account </label>
+                <div class="ui input">
+                     <input type="text" name="account" />
+                </div>
+        </div>
+        <div class="field">
+                <label>password </label>
+                <div class="ui input">
+                     <input type="text" name="password" />
+                </div>
+        </div>
 
-            <input id="submit" type="submit" value="login"></button>
+            <button id="submit" class="ui fluid large primary button" type="submit" value="login">
+                    login
+            </button>
         </div>
       </form>
 
+            
+            </div>
+    </div>
+
+    <footer>
+            <%- include('partials/footer')  %>
+    </footer>
 </body>
 </html>
 

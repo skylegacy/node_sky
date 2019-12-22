@@ -9,29 +9,46 @@ router.get('/login',userController.login);
 /* GET users listing. */
 router.get('/', function(req, res, next) {
   
-  var responseText = 'Requested at: ' + req.requestTime + '';
-  res.send('respond with a resource,'+responseText);
+  // var responseText = 'Requested at: ' + req.requestTime + '';
+  // res.send('respond with a resource,'+responseText);
+  var value = { 
+    title:'登入網站:' ,
+    loginUser: req.session.loginUser,
+    repassUrl: req.app.get('urlReferer')
+  }
+   
+  if(req.session.loginUser!==undefined){
+
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.render('admin/index', value);
+  }
+  else{
+
+    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+    res.redirect('/users/login');
+  }
 
   next()
 });
 
 router.get('/status',function(req, res, next){
     
-    var str = userController.register();
-   
-    var confirm = req.session.loginUser;
-    res.write('<html>');
-    res.write('<body>');
-    res.write("pass:"+str.pass);
-    res.write("<br>");
-    res.write("salt:"+str.salt);
-    res.write("<br>");
-    res.write("result:"+str.conres);
-    res.write("<br>Who is that:"+confirm);
-    res.write('</body>');
-    res.write('</html>');
+    var value = { 
+      title:'登入網站:' ,
+      loginUser: req.session.loginUser,
+      repassUrl: req.app.get('urlReferer')
+    }
+    
+    if(req.session.loginUser!==undefined){
 
-    res.end();
+      res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+      res.render('admin/status', value);
+    }
+    else{
+  
+      res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+      res.redirect('/users/login');
+    }
 
     next();
      

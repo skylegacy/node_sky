@@ -38,9 +38,10 @@ exports.login = function(req,res,next){
         res.redirect('/users/status');
       }
       else{
-        var outputData = ejs.render(loginTemp,value);
-        res.writeHead(200,{'Content-Type':'text/html'});
-        res.end(outputData);
+        // var outputData = ejs.render(loginTemp,value);
+        // res.writeHead(200,{'Content-Type':'text/html'});
+        // res.end(outputData);
+        res.render('login', value);
       }
       next();
 }

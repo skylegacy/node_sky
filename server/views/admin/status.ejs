@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+            <%- include('partials/head')  %>
+    </head>
+    <body>
+           <%- include('partials/nav')  %>
+
+            <div id="downcontent" class="ui padded grid">
+                
+                <%- include('partials/menu')  %>
+
+
+                <div class="sixteen wide mobile thirteen wide tablet thirteen wide computer right floated column" id="content">
+                    <div class="ui padded grid">
+                      <div class="row">
+                        <h1 class="ui huge dividing header">Dashboard</h1>
+                      </div>
+                 
+                      <div class="ui hidden section divider"></div>
+                      <div class="row">
+                        <h1 class="ui huge dividing header">Section title</h1>
+                      </div>
+                      <div class="row">
+                         <h3>Status</h3>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- downcontent -->
+            </div>
+                  
+
+                  
+            <%- include('partials/footer')  %>
+
+            <script>
+                $(document).ready(function() {
+                    
+
+                    // $('#userStatus .dropdown')
+                    // .dropdown({ transition: 'drop'
+                    // });
+
+                    $(".ui.dropdown").dropdown();
+
+                })
+            </script>
+    </body>
+
+</html>

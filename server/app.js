@@ -22,11 +22,11 @@ var myLogger = function (req, res, next) {
   next();
 };
 
-
-// view engine setup , video  path
-app.set('views', path.join(__dirname, 'views'));
 // app.set('view engine', 'pug');
 app.set('view engine', 'ejs');  
+// view engine setup , video  path
+app.set('views', path.join(__dirname, 'views'));
+
 
 app.use(bodyParser.json()); 
 app.use(logger('dev'));
