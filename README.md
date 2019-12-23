@@ -5,6 +5,7 @@
 - [How to use Sequelize with Node and Express](https://www.codementor.io/mirko0/how-to-use-sequelize-with-node-and-express-i24l67cuz)
 - [让Node.js项目实现热部署，修改文件避免重启](https://www.javatang.com/archives/2018/12/04/50212669.html)
 - [Node.js中的express框架熱部屬](https://blog.csdn.net/twodogya/article/details/80183565)
+- [【JavaScript框架】Express 4.x 教程](https://www.bilibili.com/video/av46244128?p=31)
 
 ---
 
