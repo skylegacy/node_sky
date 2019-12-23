@@ -11,6 +11,7 @@ var dbRouter = require('./routes/db');
 
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var FileStore = require('session-file-store')(session);
  
 var userService = require('./lib/userService');
 
@@ -38,13 +39,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
  //  Hook
 
-var expiryDate = new Date( Date.now() + 20 * 60 * 1000 );  // 有效期，单位是毫秒
+var expiryDate = new Date( Date.now() + 24 * 60 * 60 * 1000 );  // 有效期，单位是毫秒
 
 app.set('trust proxy', 1)
  
 //  Can't put  Session Init  On callBack
 app.use(
       session({
+        store: new FileStore,
         secret : 'skyline',
         name : 'skysession', 
         resave: true,
