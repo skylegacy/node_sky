@@ -6,7 +6,7 @@
 - [让Node.js项目实现热部署，修改文件避免重启](https://www.javatang.com/archives/2018/12/04/50212669.html)
 - [Node.js中的express框架熱部屬](https://blog.csdn.net/twodogya/article/details/80183565)
 - [【JavaScript框架】Express 4.x 教程](https://www.bilibili.com/video/av46244128?p=31)
- 
+- [自動抓favicon的問題](https://stackoverflow.com/questions/35408729/express-js-prevent-get-favicon-ico)
 
 ---
 
