@@ -16,4 +16,4 @@
 
 2. 使用migration方式維護DB,需建立```.sequelizerc```已啟動ORM: [https://github.com/sequelize/express-example](https://github.com/sequelize/express-example)
 
-3. ```app.get('/favicon.ico', (req, res) => res.status(204));``` ,解決瀏覽器自動
+3. ```app.get('/favicon.ico', (req, res) => res.status(204));``` ,解決瀏覽器自動抓favicon的問題
