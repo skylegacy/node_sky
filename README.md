@@ -6,6 +6,7 @@
 - [让Node.js项目实现热部署，修改文件避免重启](https://www.javatang.com/archives/2018/12/04/50212669.html)
 - [Node.js中的express框架熱部屬](https://blog.csdn.net/twodogya/article/details/80183565)
 - [【JavaScript框架】Express 4.x 教程](https://www.bilibili.com/video/av46244128?p=31)
+ 
 
 ---
 
@@ -14,3 +15,5 @@
 1. ```User.sync()```中使用```{force: true}```會讓城市每次執行的時候強制刪除資料庫，並且重新建立資料庫。這比較適合在測試環境中執行，而正式環境，則需要把force拿掉...
 
 2. 使用migration方式維護DB,需建立```.sequelizerc```已啟動ORM: [https://github.com/sequelize/express-example](https://github.com/sequelize/express-example)
+
+3. ```app.get('/favicon.ico', (req, res) => res.status(204));``` ,解決瀏覽器自動
