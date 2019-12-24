@@ -34,13 +34,14 @@ exports.login = function(req,res,next){
       // }
 
       if(req.session.loginUser!==undefined){
-        res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+        
         res.redirect('/users/status');
       }
       else{
         // var outputData = ejs.render(loginTemp,value);
         // res.writeHead(200,{'Content-Type':'text/html'});
         // res.end(outputData);
+        res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
         res.render('login', value);
       }
       next();

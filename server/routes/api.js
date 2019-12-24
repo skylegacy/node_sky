@@ -19,16 +19,19 @@ router.get('/auth',  function(req, res, next) {
          req.body.account,
          req.body.password,
         function(calldata){
-            console.log('------- 最終結果 --------');
-            var instances = JSON.parse(calldata);
-            if(instances.length>0){
-                req.session.loginUser = instances[0].username;
-                console.log('查詢->處理->查詢');
-                console.log(req.session.loginUser);
-            }else{
-                console.log('沒有'); 
-            }
-            res.json(req.session.loginUser);
+          
+             var instances = JSON.parse(calldata);
+
+             var resMessage = { status:true,loginUser:''}
+
+             if(instances.data.length>0){
+                 req.session.loginUser = instances.data[0].account;
+                 resMessage.loginUser =  instances.data[0].account;
+             }else{
+                resMessage.error = 'none user';
+             }
+           
+              res.json(resMessage);
         }
     );
        
@@ -37,12 +40,16 @@ router.get('/auth',  function(req, res, next) {
 router.post('/role',function(req, res, next){
 
     var adddata = {
-        "roleName":null
+        "roleName":null,
+        "valueNum":null
     };
 
     adddata.roleName = req.body.roleName;
- 
-    Role.create({"roleName":adddata.roleName})
+    adddata.valueNum =   req.body.valueNum;
+    Role.create({
+        "roleName":adddata.roleName,
+        "valueNum":adddata.valueNum
+    })
     .then(function(role){
         res.json(role.get({
             plain: true

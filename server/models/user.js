@@ -35,6 +35,15 @@
       type: DataTypes.DATE
     }
 
+  },{
+
+      indexes: [
+        {
+            unique: true,
+            fields: ['username', 'account']
+        }
+      ]
+
   });
 
   // User.associate = function(models) {

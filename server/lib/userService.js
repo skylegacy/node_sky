@@ -128,6 +128,12 @@ exports.findUserByPassWd = function(req, res, next){
     next();
    
 }
+
+exports.findUserByApi  = function(req, res, next){
+
+}
+
+
  exports.reCrypPassWd = function(accountName,passWord,callback){
 
     let passwd = null;

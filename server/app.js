@@ -78,6 +78,7 @@ app.use(function (req, res,next) {
 
         // console.log('打印前一頁:'+ req.session.referUrl );
 
+       
         app.locals.testText = 'app全域locals';
        //    Must  execute next()  , Route Level  will  excute
        next();
