@@ -3,7 +3,7 @@
 
  module.exports = function(sequelize, DataTypes){
 
-  var User = sequelize.define('Users', {
+  var User = sequelize.define('User', {
     
     id: {
       allowNull: false,
@@ -36,18 +36,16 @@
     }
 
   },{
-
-      indexes: [
-        {
+      indexes: [ {
             unique: true,
             fields: ['username', 'account']
-        }
-      ]
-
+        } ]
   });
 
-  // User.associate = function(models) {
-  //   // associations can be defined here
-  // };
+  User.associate = function(models) {
+    // associations can be defined here
+   
+  };
+
    return User;
 }

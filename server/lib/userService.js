@@ -113,8 +113,6 @@ exports.findUserByPassWd = function(req, res, next){
                                                         req.session.loginUser =  objResult[0].account;
                                                         console.log('跳轉頁面:'+newPassUrl);
                                                         console.log('認證通過,核發簽證:'+req.session.loginUser);
-                                                        // res.set('Content-Type', 'text/html')
-                                                        // res.send('<p>身份結果:'+res.locals.username+'</p>')
                                                         res.redirect(newPassUrl);
                                                 }          
                                     }
