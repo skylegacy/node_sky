@@ -7,40 +7,44 @@ var roleModel = require('../sequelize').Role;
 
 
 router.get('/', function(req, res, next) {
-    // res.send('express automatically reloads after modifying the file');
 
-    // var str = userController.showDbStatus();
+      // userModel.hasOne(roleModel, { as: 'Role', foreignKey: 'role' })
+
+      //   userModel.belongsTo(roleModel,{
+      //     foreignKey:'role'
+      // })
+      
+      // var data = userService.showDbStatus();
+        // var str = userController.showDbStatus();
+      this.resback = null;
+      var that = this;
+
+      var getAsyncfunc = async (users) => 
+      {
+               var users = userModel.findAll({
+                    include:[{
+                      model:roleModel,
+                      as: 'Role',
+                      // through:{ attributes:['username','account','roleName']  }
+                    }]
+               })
+               return users;
+      }
  
+      // res.header("Content-Type",'application/json');
+      // res.send(JSON.stringify(instance, null, 4));
 
-    // userModel.hasOne(roleModel, { as: 'Role', foreignKey: 'role' })
-    userModel.belongsTo(roleModel,{
-       foreignKey:'role'
-   })
+      ( async () => {
 
-  
-   userModel.findAll({
-        include:[{
-          model:roleModel,
-          as: 'Role',
-          // through:{
-          //   attributes:['username','account','roleName'] 
-          // }
-        }]
-      }).then(function(instance){
-        
-        res.header("Content-Type",'application/json');
-        res.send(JSON.stringify(instance, null, 4));
-      
-      }).catch(function(err){
-          console.log(err);
-      })
-         
-      
+        that.resback = await getAsyncfunc();
+        res.header("Content-Type",'text/html');
+        res.end(JSON.stringify(this.resback));
+           
+      })();
+       
+      // always null;
+      console.log(that.resback);
 
-    var data = userService.showDbStatus();
-    
-   
-    
   });
 
 module.exports = router;
