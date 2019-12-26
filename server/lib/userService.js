@@ -111,6 +111,7 @@ exports.findUserByPassWd = function(req, res, next){
                                                         res.redirect('/');
                                                 }else{
                                                         req.session.loginUser =  objResult[0].account;
+                                                        
                                                         console.log('跳轉頁面:'+newPassUrl);
                                                         console.log('認證通過,核發簽證:'+req.session.loginUser);
                                                         res.redirect(newPassUrl);
