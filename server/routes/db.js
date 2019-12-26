@@ -24,8 +24,7 @@ router.get('/', function(req, res, next) {
                var users = userModel.findAll({
                     include:[{
                       model:roleModel,
-                      as: 'Role',
-                      // through:{ attributes:['username','account','roleName']  }
+                      as: 'Role'
                     }]
                })
                return users;

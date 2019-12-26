@@ -149,14 +149,14 @@ exports.findUserByApi  = function(req, res, next){
     }).then(function(){
 
         bindValue = JSON.parse(bindValue);
-        console.log(bindValue);
+        // console.log(bindValue);
         
             if(bindValue.length == 0){
 
                 var message = { error: '找不到使用者' }
                 console.log(message.error);
                 bindValue = JSON.stringify(message); 
-                callback(bindValue);
+                // callback(bindValue);
 
             }else{
                 
@@ -168,15 +168,28 @@ exports.findUserByApi  = function(req, res, next){
                 console.log('+++查詢次數'+times+'+++');
         
                     User.findAll({
-                        where:{password:passwd} 
+                        where:{password:passwd} ,
+                        include:[{
+                            model:Role,
+                            as: 'Role'
+                          }]
                     }).then(function(user){
-                        var message = {};
+                        
+                            var message = {};
                             bindValue = JSON.stringify(user); 
+                            
                             if(bindValue.length==0){
                                  message.error='該密碼錯誤';
                             }
-                            else{                                
-                                message['data'] = bindValue;
+                            else{        
+                                dataRender = user[0].get({plain: true});
+                                // console.log(dataRender);
+                                if(dataRender.Role.valueNum>700){
+                                    message['data'] = bindValue;
+                                }
+                                else{
+                                    message.error='帳號權限不足';
+                                }
                             }
                             bindValue = JSON.stringify(message);
                             callback(bindValue);
