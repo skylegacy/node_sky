@@ -21,7 +21,7 @@ router.get('/upload',function(req, res, next){
 })
  // login Form route
 router.post('/authuser',userService.findUserByPassWd);
-
+// prevent bowser auto find favicon
 router.get('/favicon.ico', (req, res) => res.status(204));
 
 module.exports = router;

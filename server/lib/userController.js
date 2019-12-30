@@ -5,12 +5,15 @@ var ejs = require('ejs');
 var loginTemp = fs.readFileSync('views/login.ejs', 'utf-8');
  
 
-exports.register = function(){
+exports.checkmember = function(req,res){
   // var data = userService.showDbStatus();
  
-        var data = 'test register';
-        return data;
+        if(req.session.loginUser==undefined){
 
+          res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+          res.redirect('/users/login');
+        }
+       
 }
 
 exports.login = function(req,res,next){
