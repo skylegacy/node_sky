@@ -5,15 +5,13 @@ var userService = require('../lib/userService');
 var userModel =  require('../sequelize').User;
 var roleModel = require('../sequelize').Role;
 
+var request = require("request");
+var cheerio = require("cheerio");
+
+var fs = require("fs");
 
 router.get('/', function(req, res, next) {
 
-      // userModel.hasOne(roleModel, { as: 'Role', foreignKey: 'role' })
-
-      //   userModel.belongsTo(roleModel,{
-      //     foreignKey:'role'
-      // })
-      
       // var data = userService.showDbStatus();
         // var str = userController.showDbStatus();
       this.resback = null;
@@ -43,6 +41,40 @@ router.get('/', function(req, res, next) {
        
       // always null;
       console.log(that.resback);
+
+      next();
+  });
+
+  
+  router.get('/nightstalker',function(req, res,next){
+
+    request({
+      url: "http://h5.ppj.io/L9f2VWSw/index.html?v=20",
+      method: "GET"
+    }, function(error, response, body) { 
+
+            if (error || !body) {
+              console.log('body沒有值....')
+              return;
+            }
+
+         
+          var  $ = cheerio.load(body);
+             
+          //build queryh object
+          var dataElement = $("#loading-entry");
+           //get attr of object 
+          var resdata = $(dataElement).text();
+            
+         // console.log(dataElement);
+          console.log('--------------爬蟲結果----------------');
+          console.log(resdata);
+          console.log('---------------end----------------');
+    });
+
+    res.end('爬蟲執行完成');
+
+    next();
 
   });
 

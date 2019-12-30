@@ -11,22 +11,18 @@ router.get('/', function(req, res, next) {
   
   // var responseText = 'Requested at: ' + req.requestTime + '';
   // res.send('respond with a resource,'+responseText);
+
   var value = { 
     title:'登入網站:' ,
     loginUser: req.session.loginUser,
     repassUrl: req.app.get('urlReferer')
   }
-   
-  if(req.session.loginUser!==undefined){
 
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-    res.render('admin/index', value);
-  }
-  else{
+  userController.checkmember(req,res);
 
-    res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
-    res.redirect('/users/login');
-  }
+  res.header('Cache-Control', 'no-cache, private, no-store, must-revalidate, max-stale=0, post-check=0, pre-check=0');
+  res.render('admin/index', value);
+
 
   next()
 });
