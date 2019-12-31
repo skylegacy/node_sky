@@ -75,4 +75,31 @@ router.post('/user',function(req, res, next){
  
 });
 
+router.patch('/user/:id',function(req, res, next){
+
+ 
+    // input_data.username = req.body.username ? req.body.username : null;
+    var input_data = {
+        username : req.body.username,
+        role : req.body.role
+    }
+    // input_data.account = req.body.account;
+    // input_data.password = req.body.password;
+    var  condit_data = {
+        returning: true,
+        where:{
+            id: req.params.id
+        }
+    }
+
+    userService.updateUser(input_data,condit_data);
+ 
+    var message = {
+        status:true,
+        message:'ok'
+    }
+    res.json(message);
+
+});
+
 module.exports = router;

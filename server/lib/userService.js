@@ -119,9 +119,6 @@ exports.findUserByPassWd = function(req, res, next){
                 }
                 
             );
- 
-
-    
 
     next();
    
@@ -199,4 +196,16 @@ exports.findUserByApi  = function(req, res, next){
 
     })
 
+ }
+
+// updateUserbyPatch
+ exports.updateUser = function(dataObject, dataWhere){
+ 
+    console.log(dataObject);
+    console.log(dataWhere);
+
+    User.update( dataObject,dataWhere
+        ).then(function( ){
+            console.log('Postgres 才能回傳更新數據');
+    })
  }
